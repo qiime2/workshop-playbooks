@@ -9,6 +9,7 @@ allocate:
 	ansible-playbook \
 		-i inventory \
 		--extra-vars 'ssl_cert_dir=${SECRETS}/certs/qiime2.org' \
+		--extra-vars 'authorized_keys_dir=${SECRETS}/keys' \
 		playbooks/aws-workshop-allocate.yml
 
 .PHONY: destroy

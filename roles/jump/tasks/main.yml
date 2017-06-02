@@ -69,6 +69,16 @@
     - source activate qiime2-{{ qiime2_release }}
     - source tab-qiime
 
+- name: ensure skel ssh dir is present
+  file:
+    path: /etc/skel/.ssh
+    state: directory
+
+- name: add admin authorized keys
+  copy:
+    src: "{{ authorized_keys_dir }}/authorized_keys"
+    dest: /etc/skel/.ssh/authorized_keys
+
 - name: create workshop working dir
   file:
     path: "{{ item.path }}"
