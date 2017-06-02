@@ -38,8 +38,6 @@ ANIMALS = ['akita', 'albatross', 'alligator', 'angelfish', 'ant', 'anteater',
            'tiger', 'toad', 'turkey', 'turtle', 'wallaby', 'walrus', 'warthog',
            'wasp', 'weasel', 'whale', 'wolf', 'wombat', 'yak', 'zebra']
 
-CHARS = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789'
-
 def _make_name():
     name = []
     for list_ in (ADJECTIVES, ANIMALS):
@@ -58,10 +56,6 @@ def generate_names(count=1):
         usernames.append(username)
     return usernames
 
-def generate_password(size=6):
-    vals = [CHARS[ord(os.urandom(1)) % len(CHARS)] for i in range(size)]
-    return ''.join(vals)
-
 if __name__=='__main__':
     host_data = json.loads(sys.argv[1])
     accts_per_host = int(sys.argv[2])
@@ -70,8 +64,7 @@ if __name__=='__main__':
     csv_users = []
     json_users = []
     for i, name in enumerate(names):
-        password = generate_password()
-        password_hash = sha512_crypt.encrypt(password)
+        password_hash = sha512_crypt.encrypt(name)
         group = 'worker%d' % int((i / accts_per_host))
         uid = i + 2000
         csv_record = {

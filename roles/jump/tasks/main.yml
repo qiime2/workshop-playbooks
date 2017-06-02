@@ -100,7 +100,7 @@
 - name: create admin accounts
   user:
     name: "{{ item }}"
-    password: "$6$rounds=656000$ycPDEjJbFznV6P00$Vp1EqUejMU/GVaLgO04Qv6XuZ5M3p3tPakCrPB7kSoxMBn3euWFok4tCA9b1dCYDpanjU5.0SWOn/rRtUwZ900"
+    password: "$6$rounds=656000$odzDwS9gk.h9jRDb$DgPtdKpgV0qg.WP6d7Rz1Jc51GsGyiNhzjMmga/Nh5Gwwav/k5OUTk8ACcZTYSTOc//uZVzaCWilF9Mx2ImDi."
     shell: /bin/bash
     createhome: True
     home: "/home/{{ item }}"
@@ -141,7 +141,7 @@
   with_items:
     - shared
     - shared/qiime2-moving-pictures-tutorial
-    - shared/qiime2-moving-pictures-tutorial/raw-sequences
+    - shared/qiime2-moving-pictures-tutorial/emp-single-end-sequences
 
 - name: download data
   get_url:
@@ -151,6 +151,6 @@
     force: False
     timeout: 60
   with_items:
-    - { url: "https://docs.google.com/spreadsheets/d/1_3ZbqCtAYx-9BJYHoWlICkVJ4W_QGMfJRPLedt_0hws/export?gid=0&format=tsv", dest: "sample-metadata.tsv" }
-    - { url: "https://data.qiime2.org/2.0.6/tutorials/moving-pictures/raw-sequences/barcodes.fastq.gz", dest: "raw-sequences/barcodes.fastq.gz" }
-    - { url: "https://data.qiime2.org/2.0.6/tutorials/moving-pictures/raw-sequences/sequences.fastq.gz", dest: "raw-sequences/sequences.fastq.gz" }
+    - { url: "https://data.qiime2.org/{{ qiime2_release }}/tutorials/moving-pictures/sample_metadata.tsv", dest: "sample-metadata.tsv" }
+    - { url: "https://data.qiime2.org/{{ qiime2_release }}/tutorials/moving-pictures/emp-single-end-sequences/barcodes.fastq.gz", dest: "emp-single-end-sequences/barcodes.fastq.gz" }
+    - { url: "https://data.qiime2.org/{{ qiime2_release }}/tutorials/moving-pictures/emp-single-end-sequences/sequences.fastq.gz", dest: "emp-single-end-sequences/sequences.fastq.gz" }
