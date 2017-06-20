@@ -9,10 +9,10 @@ import sys
 from passlib.hash import sha512_crypt
 
 
-ADJECTIVES = ['bluesy', 'blurry', 'breezy', 'cozy', 'cranky', 'foggy',
-              'grumpy', 'hasty', 'jumpy', 'lovely', 'messy', 'queasy', 'scaly',
-              'shaky', 'silly', 'sleepy', 'snazzy', 'squeaky', 'stealthy',
-              'thirsty', 'wheezy', 'woozy', 'zippy']
+ADJECTIVES = ['bluesy', 'blurry', 'breezy', 'cozy', 'cranky', 'fluffy',
+              'foggy', 'fuzzy', 'grumpy', 'hasty', 'jumpy', 'lovely', 'messy',
+              'queasy', 'scaly', 'shaky', 'silly', 'sleepy', 'snazzy',
+              'squeaky', 'stealthy', 'thirsty', 'wheezy', 'woozy', 'zippy']
 
 ANIMALS = ['akita', 'albatross', 'alligator', 'angelfish', 'ant', 'anteater',
            'antelope', 'armadillo', 'axolotl', 'baboon', 'badger', 'bandicoot',
@@ -21,7 +21,7 @@ ANIMALS = ['akita', 'albatross', 'alligator', 'angelfish', 'ant', 'anteater',
            'bulldog', 'bullfrog', 'butterfly', 'buzzard', 'camel', 'capybara',
            'cat', 'caterpillar', 'catfish', 'cattle', 'centipede', 'chameleon',
            'cheetah', 'chicken', 'chinchilla', 'chipmunk', 'cockroach',
-           'cougar', 'cow', 'coyote', 'crab', 'crocodile', 'deer', 'dodo',
+           'coyote', 'crab', 'crocodile', 'deer', 'dodo',
            'dog', 'dolphin', 'donkey', 'dragon', 'duck', 'eagle', 'echidna',
            'eel', 'elephant', 'emu', 'ferret', 'fish', 'flamingo', 'fox',
            'frog', 'gecko', 'gerbil', 'giraffe', 'goat', 'goose', 'gorilla',
@@ -33,9 +33,9 @@ ANIMALS = ['akita', 'albatross', 'alligator', 'angelfish', 'ant', 'anteater',
            'ostrich', 'otter', 'owl', 'panda', 'penguin', 'pig', 'quail',
            'quokka', 'quoll', 'rabbit', 'raccoon', 'rat', 'reindeer',
            'salamander', 'scorpion', 'seahorse', 'seal', 'shark', 'sheep',
-           'shrew', 'shrimp', 'skunk', 'sloth', 'slug', 'snail', 'spider',
+           'shrimp', 'skunk', 'sloth', 'slug', 'snail', 'spider',
            'squid', 'squirrel', 'stoat', 'swan', 'tarantula', 'termite',
-           'tiger', 'toad', 'turkey', 'turtle', 'wallaby', 'walrus', 'warthog',
+           'tiger', 'toad', 'turkey', 'turtle', 'wallaby', 'walrus',
            'wasp', 'weasel', 'whale', 'wolf', 'wombat', 'yak', 'zebra']
 
 def _make_name():
@@ -69,7 +69,7 @@ if __name__=='__main__':
         uid = i + 2000
         csv_record = {
             'name': name,
-            'password': password,
+            'password': password_hash,
             'group': group,
         }
         csv_users.append(csv_record)

@@ -68,6 +68,7 @@
     - export LANG=C.UTF-8
     - source activate qiime2-{{ qiime2_release }}
     - source tab-qiime
+    - 'export PS1="working directory: \$PWD\n$ "'
 
 - name: ensure skel ssh dir is present
   file:

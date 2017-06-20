@@ -49,3 +49,11 @@
   shell: source activate qiime2-{{ qiime2_release }}
   args:
     executable: /bin/bash
+
+# Vegas Workshop
+- name: install gneiss
+  environment:
+    PATH: "{{ miniconda_path }}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  shell: source activate qiime2-{{ qiime2_release }} && conda install -c biocore gneiss=0.4.0
+  args:
+    executable: /bin/bash
