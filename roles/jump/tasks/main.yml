@@ -105,6 +105,7 @@
     shell: /bin/bash
     createhome: True
     home: "/home/{{ item }}"
+    groups: "sudo"
   with_items:
     - admin1
     - admin2

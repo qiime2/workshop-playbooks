@@ -8,35 +8,19 @@ import sys
 
 from passlib.hash import sha512_crypt
 
+ADJECTIVES = ['astute', 'nocturnal', 'migratory', 'happy', 'focused', 'clever',
+              'snazzy', 'zippy', 'silly']
 
-ADJECTIVES = ['bluesy', 'blurry', 'breezy', 'cozy', 'cranky', 'fluffy',
-              'foggy', 'fuzzy', 'grumpy', 'hasty', 'jumpy', 'lovely', 'messy',
-              'queasy', 'scaly', 'shaky', 'silly', 'sleepy', 'snazzy',
-              'squeaky', 'stealthy', 'thirsty', 'wheezy', 'woozy', 'zippy']
-
-ANIMALS = ['akita', 'albatross', 'alligator', 'angelfish', 'ant', 'anteater',
-           'antelope', 'armadillo', 'axolotl', 'baboon', 'badger', 'bandicoot',
-           'barracuda', 'bat', 'beagle', 'bear', 'bee', 'beetle', 'bird',
-           'bison', 'bloodhound', 'boar', 'bobcat', 'bonobo', 'buffalo',
-           'bulldog', 'bullfrog', 'butterfly', 'buzzard', 'camel', 'capybara',
-           'cat', 'caterpillar', 'catfish', 'cattle', 'centipede', 'chameleon',
-           'cheetah', 'chicken', 'chinchilla', 'chipmunk', 'cockroach',
-           'coyote', 'crab', 'crocodile', 'deer', 'dodo',
-           'dog', 'dolphin', 'donkey', 'dragon', 'duck', 'eagle', 'echidna',
-           'eel', 'elephant', 'emu', 'ferret', 'fish', 'flamingo', 'fox',
-           'frog', 'gecko', 'gerbil', 'giraffe', 'goat', 'goose', 'gorilla',
-           'grasshopper', 'guppy', 'hamster', 'hedgehog', 'horse',
-           'hummingbird', 'hyena', 'iguana', 'jaguar', 'jellyfish', 'kangaroo',
-           'koala', 'lemming', 'lemur', 'leopard', 'lion', 'lizard', 'llama',
-           'lobster', 'lynx', 'magpie', 'mammoth', 'meerkat', 'mole',
-           'mongoose', 'monkey', 'moose', 'mouse', 'newt', 'ocelot', 'octopus',
-           'ostrich', 'otter', 'owl', 'panda', 'penguin', 'pig', 'quail',
-           'quokka', 'quoll', 'rabbit', 'raccoon', 'rat', 'reindeer',
-           'salamander', 'scorpion', 'seahorse', 'seal', 'shark', 'sheep',
-           'shrimp', 'skunk', 'sloth', 'slug', 'snail', 'spider',
-           'squid', 'squirrel', 'stoat', 'swan', 'tarantula', 'termite',
-           'tiger', 'toad', 'turkey', 'turtle', 'wallaby', 'walrus',
-           'wasp', 'weasel', 'whale', 'wolf', 'wombat', 'yak', 'zebra']
+ANIMALS = ['anteater', 'armadillo', 'axolotl', 'bairusa', 'bandicoot', 'bongo',
+           'capybara', 'chameleon', 'chinchilla', 'coati', 'colugo', 'dragon',
+           'echidna', 'emu', 'gecko', 'gerenuk', 'hedgehog', 'hoatzin',
+           'hyena', 'iguana', 'iriomote', 'javelina', 'jellyfish', 'kanchil',
+           'kangaroo', 'koala', 'lamprey', 'lemming', 'lemur', 'lobster',
+           'meerkat', 'mole', 'nautilus', 'ocelot', 'octopus', 'okapi', 'owl',
+           'pangolin', 'penguin', 'quail', 'quokka', 'quoll', 'reindeer',
+           'ringtail', 'salamander', 'seahorse', 'shoebill', 'shrimp', 'sloth',
+           'spider', 'squid', 'stoat', 'tapir', 'turtle', 'uakari', 'vaquita',
+           'wallaby', 'wombat', 'woylie', 'xenopus', 'zebra', 'zebu']
 
 def _make_name():
     name = []

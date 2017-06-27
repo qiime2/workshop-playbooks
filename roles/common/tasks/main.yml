@@ -5,6 +5,14 @@
   apt:
     upgrade: dist
 
+- name: grab required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - unzip
+    - tree
+
 - name: create groups
   group:
     name: "{{ hostvars[item]['grp'] }}"
