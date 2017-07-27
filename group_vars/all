@@ -2,6 +2,7 @@
 
 ec2_region: us-west-2
 image_id: ami-45224425
+# This can be an int, or a filepath to a csv (with 2 cols and a header) of user/pass
 accts_per_host: 7
 
 # TESTING CONFIG

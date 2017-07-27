@@ -5,6 +5,7 @@ import json
 import os
 import random
 import sys
+import math
 
 from passlib.hash import sha512_crypt
 
@@ -37,19 +38,25 @@ def generate_names(count=1):
         username = None
         while not username or (username in usernames):
             username = _make_name()
-        usernames.append(username)
+        usernames.append((username, username))
     return usernames
 
 if __name__=='__main__':
     host_data = json.loads(sys.argv[1])
-    accts_per_host = int(sys.argv[2])
     count = int(host_data[0]['exact_count'])
-    names = generate_names(count * accts_per_host)
+    if os.path.exists(sys.argv[2]):
+        with open(sys.argv[2]) as fh:
+            names = list(csv.reader(fh))[1:]  # skip header
+        num_per_host = math.ceil(len(names)/float(count))  # Py2, float div!
+    else:
+        num_per_host = int(sys.argv[2])
+        names = generate_names(count * num_per_host)
+
     csv_users = []
     json_users = []
-    for i, name in enumerate(names):
-        password_hash = sha512_crypt.encrypt(name)
-        group = 'worker%d' % int((i / accts_per_host))
+    for i, (name, passwd) in enumerate(names):
+        password_hash = sha512_crypt.encrypt(passwd)
+        group = 'worker%d' % int((i // num_per_host))
         uid = i + 2000
         csv_record = {
             'name': name,
