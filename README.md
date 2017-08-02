@@ -33,6 +33,8 @@ $ export QIIME_SSL_DOMAIN='workshop.example.org'
 $ make allocate
 ```
 
+**Note:** When provisioning for the first time, you'll need to remove any files that may be in the `tmp` directory (in the root of this repo) in order to generate new user accounts. The `.gitkeep` file in `tmp` doesn't need to be deleted.
+
 ### Destroy all infrastructure (including EBS Volumes)
 
 ```bash
