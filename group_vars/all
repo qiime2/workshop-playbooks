@@ -27,7 +27,7 @@ group_name: ssh-workshops
 vpc_cidr_block: 172.23.0.0/16
 workshop_key_fn: workshopkey-private.pem
 
-qiime2_release: 2017.7
+qiime2_release: "2017.10"
 miniconda_path: /mnt/home/miniconda3
 
 security_groups:
