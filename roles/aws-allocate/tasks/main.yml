@@ -88,7 +88,9 @@
   ec2_eip:
     region: "{{ ec2_region }}"
     device_id: "{{ jump_hosts.instances[0].id }}"
-    ip: "{{ eip }}"
+    public_ip: "{{ eip }}"
+    reuse_existing_ip_allowed: true
+    in_vpc: true
 
 - name: add jump host to inventory
   add_host:

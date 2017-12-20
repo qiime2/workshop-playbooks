@@ -19,28 +19,45 @@
   command: "/usr/local/src/miniconda.sh -b -p {{ miniconda_path }}"
   when: not miniconda.stat.exists
 
-- name: make miniconda3 dir
+- name: make dirs
   become: true
   file:
     state: directory
-    path: "{{ miniconda_path }}"
+    path: "{{ item }}"
     owner: ubuntu
     group: ubuntu
     recurse: yes
+  with_items:
+    - "{{ miniconda_path }}"
+    - "{{ miniconda_path }}/../tmp"
   when: not miniconda.stat.exists
 
 - name: check if qiime2 env exists
   stat:
-    path: "{{ miniconda_path }}/envs/qiime2-{{ qiime2_release }}"
+    path: "{{ miniconda_path }}/envs/qiime2-{{ qiime2_release }}/bin/qiime"
   register: env
 
-- name: install qiime2
+- name: upgrade conda
   environment:
     PATH: "{{ miniconda_path }}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   command: "{{ item }}"
   with_items:
-    - conda update conda conda-env -q -y
-    - conda create -n qiime2-{{ qiime2_release }} --file https://data.qiime2.org/distro/core/qiime2-{{ qiime2_release }}-conda-linux-64.txt
+    - conda update conda -q -y
+
+- name: download env file
+  become: true
+  get_url:
+    url: https://data.qiime2.org/distro/core/qiime2-{{ qiime2_release }}-py35-linux-conda.yml
+    dest: /etc/env.yml
+  when: not env.stat.exists
+
+- name: install qiime2
+  environment:
+    PATH: "{{ miniconda_path }}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    TMPDIR: "{{ miniconda_path }}/../tmp"
+  shell: "conda env create -n qiime2-{{ qiime2_release }} --file /etc/env.yml"
+  args:
+    executable: /bin/bash
   when: not env.stat.exists
 
 - name: activate qiime2 env (conda magic, don't touch)
