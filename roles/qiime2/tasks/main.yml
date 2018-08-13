@@ -45,7 +45,7 @@
   become: true
   get_url:
     url: https://data.qiime2.org/distro/core/qiime2-{{ qiime2_release }}-py35-linux-conda.yml
-    dest: /etc/env.yml
+    dest: /tmp/env.yml
   when: not env.stat.exists
 
 - name: install and activate qiime2
@@ -53,7 +53,7 @@
     PATH: "{{ miniconda_path }}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   shell: "{{ item }}"
   with_items:
-    - "conda env create -n qiime2-{{ qiime2_release }} --file /etc/env.yml"
+    - "conda env create -n qiime2-{{ qiime2_release }} --file /tmp/env.yml"
     - "source activate qiime2-{{ qiime2_release }}"
   args:
     executable: /bin/bash
