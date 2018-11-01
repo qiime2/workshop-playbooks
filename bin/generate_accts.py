@@ -23,6 +23,7 @@ ANIMALS = ['anteater', 'armadillo', 'axolotl', 'bairusa', 'bandicoot', 'bongo',
            'spider', 'squid', 'stoat', 'tapir', 'turtle', 'uakari', 'vaquita',
            'wallaby', 'wombat', 'woylie', 'xenopus', 'zebra', 'zebu']
 
+
 def _make_name():
     name = []
     for list_ in (ADJECTIVES, ANIMALS):
@@ -31,6 +32,7 @@ def _make_name():
             part = random.choice(list_)
         name.append(part)
     return '-'.join(name)
+
 
 def generate_names(count=1):
     usernames = []
@@ -41,7 +43,8 @@ def generate_names(count=1):
         usernames.append((username, username))
     return usernames
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     host_data = json.loads(sys.argv[1])
     count = int(host_data[0]['exact_count'])
     if os.path.exists(sys.argv[2]):
