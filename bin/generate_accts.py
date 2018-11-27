@@ -33,13 +33,13 @@ def _make_name():
     return '-'.join(name)
 
 def generate_names(count=1):
-    usernames = []
+    usernames = set()
     for i in range(count):
-        username = None
-        while not username or (username in usernames):
+        username = _make_name()
+        while username in usernames:
             username = _make_name()
-        usernames.append((username, username))
-    return usernames
+        usernames.add(username)
+    return [(x, x) for x in usernames]
 
 if __name__=='__main__':
     host_data = json.loads(sys.argv[1])
