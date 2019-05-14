@@ -3,7 +3,7 @@
 ec2_region: us-west-2
 image_id: ami-45224425
 # This can be an int, or a filepath to a csv (with 2 cols and a header) of user/pass
-accts_per_host: 7
+accts_per_host: 8
 
 # TESTING CONFIG
 jump_host_type: t2.small
@@ -27,7 +27,7 @@ group_name: ssh-workshops
 vpc_cidr_block: 172.23.0.0/16
 workshop_key_fn: workshopkey-private.pem
 
-qiime2_release: "2019.1"
+qiime2_release: "2019.4"
 miniconda_path: /mnt/home/miniconda3
 
 security_groups:
