@@ -57,10 +57,12 @@
     insertafter: EOF
     line: "/mnt/home {{ vpc_cidr_block }}(rw,nohide,fsid=0,insecure,no_subtree_check,async)"
 
-- name: set up /etc/skel/.bashrc
+- name: set up /etc/skel/.zshrc
   lineinfile:
-    dest: /etc/skel/.bashrc
+    dest: /etc/skel/.zshrc
     line: "{{ item }}"
+    state: present
+    create: yes
   with_items:
     - export PATH="{{ miniconda_path }}/bin:$PATH"
     - export MPLBACKEND=agg
@@ -68,7 +70,7 @@
     - export LANG=C.UTF-8
     - source activate qiime2-{{ qiime2_release }}
     - source tab-qiime
-    - 'export PS1="working directory: \$PWD\n$ "'
+    - 'export PS1="working directory: %/"$''\n''"$ "'
 
 - name: ensure skel ssh dir is present
   file:
@@ -93,7 +95,7 @@
     password: "{{ item.hash }}"
     group: "{{ item.group }}"
     uid: "{{ item.uid }}"
-    shell: /bin/bash
+    shell: /usr/bin/zsh
     createhome: True
     home: "/mnt/home/{{ item.name }}"
   with_items: "{{ users }}"
@@ -102,7 +104,7 @@
   user:
     name: "{{ item }}"
     password: "$6$rounds=656000$odzDwS9gk.h9jRDb$DgPtdKpgV0qg.WP6d7Rz1Jc51GsGyiNhzjMmga/Nh5Gwwav/k5OUTk8ACcZTYSTOc//uZVzaCWilF9Mx2ImDi."
-    shell: /bin/bash
+    shell: /usr/bin/zsh
     createhome: True
     home: "/home/{{ item }}"
     groups: "sudo"

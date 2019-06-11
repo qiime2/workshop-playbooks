@@ -35,7 +35,7 @@
     password: "{{ item.hash }}"
     group: "{{ item.group }}"
     uid: "{{ item.uid }}"
-    shell: /bin/bash
+    shell: /usr/bin/zsh
     createhome: False
     home: "/mnt/home/{{ item.name }}"
   with_items: "{{ users }}"

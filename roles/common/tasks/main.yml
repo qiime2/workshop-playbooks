@@ -12,6 +12,7 @@
   with_items:
     - unzip
     - tree
+    - zsh
 
 - name: create groups
   group:
