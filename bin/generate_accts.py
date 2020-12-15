@@ -2,12 +2,14 @@
 
 import csv
 import json
+import math
 import os
 import random
 import sys
-import math
+import uuid
 
 from passlib.hash import sha512_crypt
+
 
 ADJECTIVES = ['astute', 'nocturnal', 'migratory', 'happy', 'focused', 'clever',
               'snazzy', 'zippy', 'silly']
@@ -34,14 +36,21 @@ def _make_name():
     return '-'.join(name)
 
 
-def generate_names(count=1):
+def _make_pass():
+    password = str(uuid.uuid4())
+    for val in '-01':
+        password = password.replace(val, '')
+    return password[0:20]
+
+
+def generate_accounts(count=1):
     usernames = set()
     for i in range(count):
         username = _make_name()
         while username in usernames:
             username = _make_name()
         usernames.add(username)
-    return [(x, x) for x in usernames]
+    return [(x, _make_pass()) for x in usernames]
 
 
 if __name__ == '__main__':
@@ -56,17 +65,17 @@ if __name__ == '__main__':
         num_per_host = math.ceil(len(names)/float(count))  # Py2, float div!
     else:
         num_per_host = int(sys.argv[3])
-        names = generate_names(count * num_per_host)
+        accounts = generate_accounts(count * num_per_host)
 
     csv_users = []
     json_users = []
-    for i, (name, passwd) in enumerate(names):
+    for i, (username, passwd) in enumerate(accounts):
         password_hash = sha512_crypt.encrypt(passwd)
         group = 'worker%d' % int((i // num_per_host))
         uid = i + 2000
         csv_record = {
-            'name': name,
-            'password': password_hash,
+            'username': username,
+            'password': passwd,
             'group': group,
             'worker_ip': workers[group],
         }
@@ -80,7 +89,7 @@ if __name__ == '__main__':
         }
         json_users.append(json_record)
     with open('../tmp/roster.csv', 'w') as fh:
-        w = csv.DictWriter(fh, ['name', 'password', 'group', 'worker_ip'])
+        w = csv.DictWriter(fh, ['username', 'password', 'group', 'worker_ip'])
         w.writeheader()
         w.writerows(csv_users)
     with open('../tmp/roster.json', 'w') as fh:
