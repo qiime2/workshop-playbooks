@@ -81,7 +81,7 @@ if __name__ == '__main__':
         }
         csv_users.append(csv_record)
         json_record = {
-            'name': name,
+            'name': username,
             'hash': password_hash,
             'group': group,
             'uid': uid,

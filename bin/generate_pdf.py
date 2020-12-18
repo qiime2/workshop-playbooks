@@ -11,7 +11,8 @@ from reportlab.lib import pagesizes
 def write_cheat_sheet(base_template, name, username, password, output_dir):
     bytez = io.BytesIO()
     url = 'https://workshop-server.qiime2.org/%s' % username
-    base_fn = name.replace(' ', '-').replace('.', '').replace('--', '-').lower()
+    base_fn = name.replace(' ', '-').replace('.', '')
+    base_fn = base_fn.replace('--', '-').lower()
     out_fn = os.path.join(output_dir, '%s-%s.pdf' % (base_fn, username))
 
     c = canvas.Canvas(bytez, pagesize=pagesizes.A4)
@@ -43,7 +44,8 @@ def write_cheat_sheet(base_template, name, username, password, output_dir):
 
 def write_cert(base_template, name, output_dir):
     bytez = io.BytesIO()
-    base_fn = name.replace(' ', '-').replace('.', '').replace('--', '-').lower()
+    base_fn = name.replace(' ', '-').replace('.', '')
+    base_fn = base_fn.replace('--', '-').lower()
     out_fn = os.path.join(output_dir, '%s.pdf' % base_fn)
 
     c = canvas.Canvas(bytez, pagesize=pagesizes.A4)
@@ -81,5 +83,6 @@ if __name__ == '__main__':
         for row in reader:
             name, username, password = row[0], row[3], row[4]
             print('writing `%s` `%s` `%s`' % (name, username, password))
-            write_cheat_sheet(base_pdf, name, username, password, output_pdf_dir)
+            write_cheat_sheet(base_pdf, name, username, password,
+                              output_pdf_dir)
             write_cert(base_cert, name, output_cert_dir)
