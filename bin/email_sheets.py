@@ -13,6 +13,11 @@ import sys
 from shared import build_base_fn
 
 
+# TODO:
+# - factor out cert fp util
+# - mail certs
+
+
 MSG_SUBJ = """\
 QIIME 2 Workshop => Here is your server login sheet (attached)
 """
