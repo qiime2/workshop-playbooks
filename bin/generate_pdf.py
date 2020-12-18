@@ -7,12 +7,13 @@ import PyPDF2
 from reportlab.pdfgen import canvas
 from reportlab.lib import pagesizes
 
+from shared import build_base_fn
+
 
 def write_cheat_sheet(base_template, name, username, password, output_dir):
     bytez = io.BytesIO()
     url = 'https://workshop-server.qiime2.org/%s' % username
-    base_fn = name.replace(' ', '-').replace('.', '')
-    base_fn = base_fn.replace('--', '-').lower()
+    base_fn = build_base_fn(name)
     out_fn = os.path.join(output_dir, '%s-%s.pdf' % (base_fn, username))
 
     c = canvas.Canvas(bytez, pagesize=pagesizes.A4)
@@ -44,8 +45,7 @@ def write_cheat_sheet(base_template, name, username, password, output_dir):
 
 def write_cert(base_template, name, output_dir):
     bytez = io.BytesIO()
-    base_fn = name.replace(' ', '-').replace('.', '')
-    base_fn = base_fn.replace('--', '-').lower()
+    base_fn = build_base_fn(name)
     out_fn = os.path.join(output_dir, '%s.pdf' % base_fn)
 
     c = canvas.Canvas(bytez, pagesize=pagesizes.A4)

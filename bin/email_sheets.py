@@ -10,13 +10,15 @@ import ssl
 import sys
 
 
+from shared import build_base_fn
+
+
 MSG_SUBJ = """\
 QIIME 2 Workshop => Here is your server login sheet (attached)
 """
 
 
 MSG_BODY = """\
-
 Hello! Please find attached a copy of your server login information, as well
 as some reference material to keep on hand during the upcoming QIIME 2
 workshop.
@@ -31,8 +33,7 @@ Thanks so much and see you soon!
 
 
 def build_pdf_fp(name, username, output_dir):
-    base_fn = name.replace(' ', '-').replace('.', '')
-    base_fn = base_fn.replace('--', '-').lower()
+    base_fn = build_base_fn(name)
     pdf_fn = '%s-%s.pdf' % (base_fn, username)
     pdf_fp = os.path.join(output_dir, pdf_fn)
 
