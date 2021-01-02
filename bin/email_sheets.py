@@ -13,11 +13,6 @@ import sys
 from shared import build_base_fn
 
 
-# TODO:
-# - factor out cert fp util
-# - mail certs
-
-
 MSG_SUBJ = """\
 QIIME 2 Workshop => Here is your server login sheet (attached)
 """
@@ -27,6 +22,11 @@ MSG_BODY = """\
 Hello! Please find attached a copy of your server login information, as well
 as some reference material to keep on hand during the upcoming QIIME 2
 workshop.
+
+**
+There is nothing you need to do with this just now - please hold on to this
+email and PDF for the first day of the workshop.
+**
 
 Please note, the server might not yet be accessible - we will cover logging
 into the server on the first day of the workshop, so please don't worry if you

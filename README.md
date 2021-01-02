@@ -14,7 +14,7 @@
 
 ```bash
 $ conda create -n workshop-prov -c conda-forge ansible boto3
-$ source activate workshop-prov
+$ conda activate workshop-prov
 $ pip install passlib PyPDF2 reportlab
 $ export SECRETS=/path/to/secrets
 $ export AWS_ACCESS_KEY_ID='AK123'
