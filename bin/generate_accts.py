@@ -6,7 +6,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
 
-#!/usr/bin/env python
+# !/usr/bin/env python
 
 import csv
 import json
