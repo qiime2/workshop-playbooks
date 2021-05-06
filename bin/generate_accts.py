@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+#!/usr/bin/env python
 # ----------------------------------------------------------------------------
 # Copyright (c) 2016-2021, QIIME 2 development team.
 #
