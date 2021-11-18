@@ -28,6 +28,37 @@ $ export QIIME_SSL_DOMAIN='workshop.example.org'
    host.
 - `QIIME_SSL_DOMAIN` is the the configured DNS-target for the QIIME_EIP.
 
+### Configure
+
+Edit `group_vars/all`, paying attention to comment out the test config:
+
+```
+# TESTING CONFIG
+jump_host_type: t3.small
+compute_host_type: t3.nano
+compute_host_count: 1
+volume_size: "8"
+```
+
+and uncomment the production config:
+
+```
+# PRODUCTION CONFIG
+# jump_host_type: m5.8xlarge
+# compute_host_type: m5.2xlarge
+# compute_host_count: 12
+# volume_size: "50"
+```
+
+Don't forget to edit the production config values, after uncommenting. In
+general you don't need to edit the `*_host_type` entries, but you should tweak
+`compute_host_count` to accomodate the expected number of active user accounts
+(we often include 1-3 "spare" hosts, depending on the size of the workshop).
+
+**Also, edit the `qiime2_release` key to match the desired QIIME 2 epoch.**
+
+The remaining config values shouldn't generally need adjustment.
+
 ### Allocate infrastructure
 
 ```bash
