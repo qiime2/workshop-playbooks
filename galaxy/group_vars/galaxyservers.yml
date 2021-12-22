@@ -34,6 +34,8 @@ galaxy_tool_config_files:
 galaxy_config_files:
   - src: files/config/tool_data_table_conf.xml
     dest: "{{ galaxy_config_dir }}/tool_data_table_conf.xml"
+  - src: templates/galaxy/config/job_conf.xml.j2
+    dest: "{{ galaxy_config.galaxy.job_config_file }}"
 
 galaxy_config:
   galaxy:
@@ -51,6 +53,33 @@ galaxy_config:
     require_login: true
     master_api_key: "{{ vault_api_key }}"
     tool_data_table_config_path: "{{ galaxy_config_dir }}/tool_data_table_conf.xml"
+    job_config_file: "{{ galaxy_config_dir }}/job_conf.xml"
+    # SQL Performance
+    database_engine_option_server_side_cursors: true
+    slow_query_log_threshold: 5
+    enable_per_request_sql_debugging: true
+    # File serving Performance
+    nginx_x_accel_redirect_base: /_x_accel_redirect
+    # Automation / Ease of Use / User-facing features
+    watch_job_rules: 'auto'
+    allow_path_paste: true
+    allow_user_deletion: true
+    show_welcome_with_login: true
+    expose_user_name: true
+    expose_dataset_path: true
+    expose_potentially_sensitive_job_metrics: true
+    # NFS workarounds
+    retry_job_output_collection: 3
+    # Debugging
+    cleanup_job: onsuccess
+    allow_user_impersonation: true
+    # Tool security
+    outputs_to_working_directory: true
+    # email
+    smtp_server: "{{ vault_smtp_server }}"
+    smtp_username: "{{ vault_smtp_username }}"
+    smtp_password: "{{ vault_smtp_password }}"
+    smtp_ssl: "{{ vault_smtp_ssl }}"
   uwsgi:
     socket: 127.0.0.1:5000
     buffer-size: 16384
