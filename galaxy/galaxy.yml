@@ -5,10 +5,8 @@
   vars_files:
     - group_vars/secret.yml
   pre_tasks:
-    - name: update apt sources
-      raw: apt update
     - name: install dependencies
-      package:
+      apt:
         name:
           - acl
           - bzip2
@@ -17,10 +15,15 @@
           - python3-psycopg2
           - tar
           - virtualenv
+        update_cache: yes
     - name: copy qiime2 tools
       synchronize:
         src: files/tools
         dest: /opt/qiime2_tools
+    - name: set up ephemeris
+      pip:
+        name: ephemeris
+        virtualenv: /opt/venv
   roles:
     - galaxyproject.postgresql
     - role: natefoo.postgresql_objects
@@ -32,3 +35,6 @@
       become: true
       become_user: "{{ galaxy_user.name }}"
     - galaxyproject.nginx
+  post_tasks:
+    - name: install tools via ephemeris
+      shell: "/opt/venv/bin/install_tool_deps -a {{ vault_api_key }} -t /opt/qiime2_tools/tools/suite_qiime2_alignment/qiime2_alignment_mafft-add.xml -g https://{{ inventory_hostname }}"
