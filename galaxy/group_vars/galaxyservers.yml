@@ -46,6 +46,7 @@ galaxy_config:
     conda_auto_install: true
     allow_user_creation: false
     require_login: true
+    master_api_key: hello-world
   uwsgi:
     socket: 127.0.0.1:5000
     buffer-size: 16384

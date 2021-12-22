@@ -463,7 +463,7 @@ for:
                 <filter type="add_value" value="Phylogeny[Rooted]"/>
                 <filter type="add_value" value="Phylogeny[Unrooted]"/>
             </options>
-            <validator type="expression" message="Incompatible type">hasattr(value.metadata, "semantic_type") and value.metadata.semantic_type in {'Phylogeny[Rooted]', 'Phylogeny[Unrooted]'}</validator>
+            <validator type="expression" message="Incompatible type">hasattr(value.metadata, "semantic_type") and value.metadata.semantic_type in {'Phylogeny[Unrooted]', 'Phylogeny[Rooted]'}</validator>
         </param>
     </inputs>
     <outputs>

@@ -455,7 +455,7 @@ for:
                 <filter type="add_value" value="SampleData[SequencesWithQuality]"/>
                 <filter type="add_value" value="SampleData[PairedEndSequencesWithQuality]"/>
             </options>
-            <validator type="expression" message="Incompatible type">hasattr(value.metadata, "semantic_type") and value.metadata.semantic_type in {'SampleData[SequencesWithQuality]', 'SampleData[PairedEndSequencesWithQuality]'}</validator>
+            <validator type="expression" message="Incompatible type">hasattr(value.metadata, "semantic_type") and value.metadata.semantic_type in {'SampleData[PairedEndSequencesWithQuality]', 'SampleData[SequencesWithQuality]'}</validator>
         </param>
         <param name="database" type="data" format="qza" label="database: Bowtie2Index" help="[required]  Bowtie2 indexed database.">
             <options options_filter_attribute="metadata.semantic_type">
