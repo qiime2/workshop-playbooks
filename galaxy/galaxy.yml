@@ -5,7 +5,9 @@
   vars_files:
     - group_vars/secret.yml
   pre_tasks:
-    - name: Install Dependencies
+    - name: update apt sources
+      raw: apt update
+    - name: install dependencies
       package:
         name:
           - acl
@@ -15,6 +17,10 @@
           - python3-psycopg2
           - tar
           - virtualenv
+    - name: copy qiime2 tools
+      synchronize:
+        src: files/tools
+        dest: /opt/qiime2_tools
   roles:
     - galaxyproject.postgresql
     - role: natefoo.postgresql_objects

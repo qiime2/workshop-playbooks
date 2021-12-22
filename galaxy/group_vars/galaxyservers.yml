@@ -9,6 +9,7 @@ postgresql_objects_users:
 postgresql_objects_databases:
   - name: galaxy
     owner: galaxy
+
 # PostgreSQL Backups
 postgresql_backup_dir: /data/backups
 postgresql_backup_local_dir: "{{ '~postgres' | expanduser }}/backups"
@@ -19,7 +20,9 @@ galaxy_separate_privileges: true
 galaxy_manage_paths: true
 galaxy_layout: root-dir
 galaxy_root: /srv/galaxy
-galaxy_user: {name: galaxy, shell: /bin/bash}
+galaxy_user:
+  name: galaxy
+  shell: /bin/bash
 galaxy_force_checkout: true
 miniconda_prefix: "{{ galaxy_tool_dependency_dir }}/_conda"
 miniconda_version: 4.7.12
@@ -27,18 +30,22 @@ miniconda_manage_dependencies: false
 galaxy_repo: https://github.com/ebolyen/galaxy
 galaxy_commit_id: qiime2
 galaxy_tool_config_files:
-  - "{{ galaxy_server_dir }}/config/qiime2_tool_conf.xml"
+  - "/opt/qiime2_tools/tools/qiime2_tool_conf.xml"
 
 galaxy_config:
   galaxy:
-    brand: "QIIME 2 Galaxy Server"
-    admin_users: matthew.dillon@nau.edu
+    brand: "QIIME 2 Server"
+    admin_users: matthew.dillon@nau.edu,evan.bolyen@nau.edu,greg.caporaso@nau.edu
     database_connection: "postgresql:///galaxy?host=/var/run/postgresql"
     file_path: /data
     check_migrate_tools: false
     tool_data_path: "{{ galaxy_mutable_data_dir }}/tool-data"
     object_store_store_by: uuid
     id_secret: "{{ vault_id_secret }}"
+    conda_ensure_channels: https://packages.qiime2.org/qiime2/2022.2/staged/core,iuc,conda-forge,bioconda,defaults
+    conda_auto_install: true
+    allow_user_creation: false
+    require_login: true
   uwsgi:
     socket: 127.0.0.1:5000
     buffer-size: 16384
