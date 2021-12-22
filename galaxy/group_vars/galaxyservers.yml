@@ -31,6 +31,9 @@ galaxy_repo: https://github.com/ebolyen/galaxy
 galaxy_commit_id: qiime2
 galaxy_tool_config_files:
   - "/opt/qiime2_tools/tools/qiime2_tool_conf.xml"
+galaxy_config_files:
+  - src: files/config/tool_data_table_conf.xml
+    dest: "{{ galaxy_config_dir }}/tool_data_table_conf.xml"
 
 galaxy_config:
   galaxy:
@@ -47,6 +50,7 @@ galaxy_config:
     allow_user_creation: false
     require_login: true
     master_api_key: "{{ vault_api_key }}"
+    tool_data_table_config_path: "{{ galaxy_config_dir }}/tool_data_table_conf.xml"
   uwsgi:
     socket: 127.0.0.1:5000
     buffer-size: 16384
