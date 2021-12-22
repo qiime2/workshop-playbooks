@@ -1,0 +1,2 @@
+[galaxyservers]
+galaxy-test.qiime2.org ansible_connection=local ansible_user=ubuntu
