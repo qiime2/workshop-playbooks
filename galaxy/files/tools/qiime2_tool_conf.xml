@@ -1,9 +1,205 @@
 <?xml version='1.0' encoding='utf-8'?>
-<toolbox monitor="false">
+<toolbox>
     <section id="getext" name="Get Data">
-        <tool file="data_source/upload.xml" />
+        <tool file="data_source/upload.xml"/>
     </section>
-    <section id="qiime2" name="QIIME 2">
-        <tool_dir dir="/opt/qiime2_tools/tools/"/>
+    <section id="qiime2_tools" name="QIIME 2 Tools">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_tools/qiime2_tools_import.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_tools/qiime2_tools_export.xml"/>
+    </section>
+    <section id="suite_qiime2_alignment" name="QIIME 2 alignment">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_alignment/qiime2_alignment_mafft.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_alignment/qiime2_alignment_mafft-add.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_alignment/qiime2_alignment_mask.xml"/>
+    </section>
+    <section id="suite_qiime2_composition" name="QIIME 2 composition">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_composition/qiime2_composition_add-pseudocount.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_composition/qiime2_composition_ancom.xml"/>
+    </section>
+    <section id="suite_qiime2_cutadapt" name="QIIME 2 cutadapt">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_cutadapt/qiime2_cutadapt_demux-paired.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_cutadapt/qiime2_cutadapt_demux-single.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_cutadapt/qiime2_cutadapt_trim-paired.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_cutadapt/qiime2_cutadapt_trim-single.xml"/>
+    </section>
+    <section id="suite_qiime2_dada2" name="QIIME 2 dada2">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_dada2/qiime2_dada2_denoise-paired.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_dada2/qiime2_dada2_denoise-pyro.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_dada2/qiime2_dada2_denoise-single.xml"/>
+    </section>
+    <section id="suite_qiime2_deblur" name="QIIME 2 deblur">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_deblur/qiime2_deblur_denoise-16S.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_deblur/qiime2_deblur_denoise-other.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_deblur/qiime2_deblur_visualize-stats.xml"/>
+    </section>
+    <section id="suite_qiime2_demux" name="QIIME 2 demux">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_demux/qiime2_demux_emp-paired.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_demux/qiime2_demux_emp-single.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_demux/qiime2_demux_filter-samples.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_demux/qiime2_demux_subsample-paired.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_demux/qiime2_demux_subsample-single.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_demux/qiime2_demux_summarize.xml"/>
+    </section>
+    <section id="suite_qiime2_diversity" name="QIIME 2 diversity">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_adonis.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_alpha.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_alpha-correlation.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_alpha-group-significance.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_alpha-phylogenetic.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_alpha-rarefaction.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_beta.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_beta-correlation.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_beta-group-significance.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_beta-phylogenetic.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_beta-rarefaction.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_bioenv.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_core-metrics.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_core-metrics-phylogenetic.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_filter-distance-matrix.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_mantel.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_pcoa.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_pcoa-biplot.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_procrustes-analysis.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_tsne.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity/qiime2_diversity_umap.xml"/>
+    </section>
+    <section id="suite_qiime2_diversity-lib" name="QIIME 2 diversity-lib">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_alpha-passthrough.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_beta-passthrough.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_beta-phylogenetic-meta-passthrough.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_beta-phylogenetic-passthrough.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_bray-curtis.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_faith-pd.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_jaccard.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_observed-features.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_pielou-evenness.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_shannon-entropy.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_unweighted-unifrac.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_diversity-lib/qiime2_diversity-lib_weighted-unifrac.xml"/>
+    </section>
+    <section id="suite_qiime2_emperor" name="QIIME 2 emperor">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_emperor/qiime2_emperor_biplot.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_emperor/qiime2_emperor_plot.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_emperor/qiime2_emperor_procrustes-plot.xml"/>
+    </section>
+    <section id="suite_qiime2_feature-classifier" name="QIIME 2 feature-classifier">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-classifier/qiime2_feature-classifier_classify-consensus-blast.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-classifier/qiime2_feature-classifier_classify-consensus-vsearch.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-classifier/qiime2_feature-classifier_classify-hybrid-vsearch-sklearn.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-classifier/qiime2_feature-classifier_classify-sklearn.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-classifier/qiime2_feature-classifier_extract-reads.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-classifier/qiime2_feature-classifier_fit-classifier-naive-bayes.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-classifier/qiime2_feature-classifier_fit-classifier-sklearn.xml"/>
+    </section>
+    <section id="suite_qiime2_feature-table" name="QIIME 2 feature-table">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_core-features.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_filter-features.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_filter-features-conditionally.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_filter-samples.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_filter-seqs.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_group.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_heatmap.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_merge.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_merge-seqs.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_merge-taxa.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_presence-absence.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_rarefy.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_relative-frequency.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_rename-ids.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_subsample.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_summarize.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_tabulate-seqs.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_feature-table/qiime2_feature-table_transpose.xml"/>
+    </section>
+    <section id="suite_qiime2_fragment-insertion" name="QIIME 2 fragment-insertion">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_fragment-insertion/qiime2_fragment-insertion_classify-otus-experimental.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_fragment-insertion/qiime2_fragment-insertion_filter-features.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_fragment-insertion/qiime2_fragment-insertion_sepp.xml"/>
+    </section>
+    <section id="suite_qiime2_gneiss" name="QIIME 2 gneiss">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_gneiss/qiime2_gneiss_assign-ids.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_gneiss/qiime2_gneiss_correlation-clustering.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_gneiss/qiime2_gneiss_dendrogram-heatmap.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_gneiss/qiime2_gneiss_gradient-clustering.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_gneiss/qiime2_gneiss_ilr-hierarchical.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_gneiss/qiime2_gneiss_ilr-phylogenetic.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_gneiss/qiime2_gneiss_ilr-phylogenetic-differential.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_gneiss/qiime2_gneiss_ilr-phylogenetic-ordination.xml"/>
+    </section>
+    <section id="suite_qiime2_longitudinal" name="QIIME 2 longitudinal">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_anova.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_feature-volatility.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_first-differences.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_first-distances.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_linear-mixed-effects.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_maturity-index.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_nmit.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_pairwise-differences.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_pairwise-distances.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_plot-feature-volatility.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_longitudinal/qiime2_longitudinal_volatility.xml"/>
+    </section>
+    <section id="suite_qiime2_metadata" name="QIIME 2 metadata">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_metadata/qiime2_metadata_distance-matrix.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_metadata/qiime2_metadata_tabulate.xml"/>
+    </section>
+    <section id="suite_qiime2_phylogeny" name="QIIME 2 phylogeny">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_align-to-tree-mafft-fasttree.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_align-to-tree-mafft-iqtree.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_align-to-tree-mafft-raxml.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_fasttree.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_filter-table.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_filter-tree.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_iqtree.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_iqtree-ultrafast-bootstrap.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_midpoint-root.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_raxml.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_raxml-rapid-bootstrap.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_phylogeny/qiime2_phylogeny_robinson-foulds.xml"/>
+    </section>
+    <section id="suite_qiime2_quality-control" name="QIIME 2 quality-control">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_quality-control/qiime2_quality-control_bowtie2-build.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_quality-control/qiime2_quality-control_evaluate-composition.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_quality-control/qiime2_quality-control_evaluate-seqs.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_quality-control/qiime2_quality-control_evaluate-taxonomy.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_quality-control/qiime2_quality-control_exclude-seqs.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_quality-control/qiime2_quality-control_filter-reads.xml"/>
+    </section>
+    <section id="suite_qiime2_quality-filter" name="QIIME 2 quality-filter">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_quality-filter/qiime2_quality-filter_q-score.xml"/>
+    </section>
+    <section id="suite_qiime2_sample-classifier" name="QIIME 2 sample-classifier">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_classify-samples.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_classify-samples-from-dist.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_classify-samples-ncv.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_confusion-matrix.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_fit-classifier.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_fit-regressor.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_heatmap.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_metatable.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_predict-classification.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_predict-regression.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_regress-samples.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_regress-samples-ncv.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_scatterplot.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_split-table.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_sample-classifier/qiime2_sample-classifier_summarize.xml"/>
+    </section>
+    <section id="suite_qiime2_taxa" name="QIIME 2 taxa">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_taxa/qiime2_taxa_barplot.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_taxa/qiime2_taxa_collapse.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_taxa/qiime2_taxa_filter-seqs.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_taxa/qiime2_taxa_filter-table.xml"/>
+    </section>
+    <section id="suite_qiime2_types" name="QIIME 2 types"/>
+    <section id="suite_qiime2_vsearch" name="QIIME 2 vsearch">
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_vsearch/qiime2_vsearch_cluster-features-closed-reference.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_vsearch/qiime2_vsearch_cluster-features-de-novo.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_vsearch/qiime2_vsearch_cluster-features-open-reference.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_vsearch/qiime2_vsearch_dereplicate-sequences.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_vsearch/qiime2_vsearch_fastq-stats.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_vsearch/qiime2_vsearch_join-pairs.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_vsearch/qiime2_vsearch_uchime-denovo.xml"/>
+        <tool file="/opt/qiime2_tools/tools/suite_qiime2_vsearch/qiime2_vsearch_uchime-ref.xml"/>
     </section>
 </toolbox>
