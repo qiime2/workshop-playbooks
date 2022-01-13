@@ -36,5 +36,6 @@
       become_user: "{{ galaxy_user.name }}"
     - galaxyproject.nginx
   post_tasks:
+    # here we just install a single tool, galaxy should handle the rest for us
     - name: install tools via ephemeris
       shell: "/opt/venv/bin/install_tool_deps -a {{ vault_api_key }} -t /opt/qiime2_tools/tools/suite_qiime2_alignment/qiime2_alignment_mafft-add.xml -g https://{{ inventory_hostname }}"
