@@ -24,6 +24,32 @@
       pip:
         name: ephemeris
         virtualenv: /opt/venv
+  roles:
+    - galaxyproject.postgresql
+    - role: natefoo.postgresql_objects
+      become: true
+      become_user: postgres
+    - geerlingguy.pip
+    - galaxyproject.galaxy
+    - role: uchida.miniconda
+      become: true
+      become_user: "{{ galaxy_user.name }}"
+    - galaxyproject.nginx
+  post_tasks:
+    # here we just install a single tool, galaxy should handle the rest for us
+    - name: install tools via ephemeris
+      shell: |
+        /opt/venv/bin/install_tool_deps \
+          -a {{ vault_api_key }} \
+          -i qiime2_tools_import \
+          -g {{ inventory_hostname }}
+
+- hosts: galaxyservers
+  become: true
+  become_user: root
+  vars_files:
+    - group_vars/secret.yml
+  pre_tasks:
     - name: create gie dirs
       ansible.builtin.file:
         path: "{{ item }}"
@@ -41,24 +67,6 @@
           become: true
           become_user: root
   roles:
-    - galaxyproject.postgresql
-    - role: natefoo.postgresql_objects
-      become: true
-      become_user: postgres
-    - geerlingguy.pip
-    - galaxyproject.galaxy
-    - role: uchida.miniconda
-      become: true
-      become_user: "{{ galaxy_user.name }}"
-    - galaxyproject.nginx
     - role: galaxyproject.interactive_environments
       become: true
-      become_user: root
-  post_tasks:
-    # here we just install a single tool, galaxy should handle the rest for us
-    - name: install tools via ephemeris
-      shell: |
-        /opt/venv/bin/install_tool_deps \
-          -a {{ vault_api_key }} \
-          -i qiime2_tools_import \
-          -g {{ inventory_hostname }}
+      become_user: "{{ galaxy_user.name }}"

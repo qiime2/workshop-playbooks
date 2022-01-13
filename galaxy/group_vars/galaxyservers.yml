@@ -184,5 +184,3 @@ interactive_environments_config_files:
           analysis in many different languages. This image features the Python,
           R, Julia, Haskell, Bash kernels and many scientific analysis stacks for
           each.
-interactive_environments_supervisor_conf_dir: "{{ galaxy_root }}/supervisor/etc/supervisord.conf.d"
-interactive_environments_nginx_conf_dir: "/etc/nginx/sites-enabled"
