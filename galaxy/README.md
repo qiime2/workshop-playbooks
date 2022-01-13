@@ -7,7 +7,8 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
 ## Quickstart
 
 1. Allocate an EC2 instance in the region of your choice, with the latest
-   Ubuntu distro:
+   Ubuntu distro (note, you'll probably need to set up a VPC for this;
+   alternatively you could allocate an AWS Lightsail instance):
   - `m4.16xlarge` works for mid-size workshops (TODO: verify this)
   - Make sure to provision an EBS volume (1000 GB works for mid-size workshops)
   - Provision with a public-facing IP address
@@ -23,8 +24,9 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
     # Change this step to meet your needs (a custom workshop distro, staging release, etc)
     wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py38-linux-conda.yml
     conda env create -n workshop-server --file qiime2-latest-py38-linux-conda.yml
-    conda install -n workshop-server -c conda-forge ansible
+    conda install -n workshop-server -c conda-forge ansible rsync
     rm qiime2-latest-py38-linux-conda.yml
+    conda activate workshop-server
 
 1. Install ansible roles:
 
@@ -32,8 +34,8 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
 
 1. Build q2galaxy tool definitions:
 
-    q2galaxy template all $TODO
-    q2galaxy template tool-conf $TODO
+    q2galaxy template all files/tools/
+    q2galaxy template tool-conf /opt/qiime2_tools/tools files/tools/qiime2_tool_conf.xml
 
 1. Run the playbook:
 
