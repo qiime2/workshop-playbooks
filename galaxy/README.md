@@ -1,6 +1,6 @@
 # QIIME 2 Workshop Galaxy Server
 
-This set of playbooks is based heaviliy on:
+This set of playbooks is heavily based on:
 
 https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansible-galaxy/tutorial.html
 
@@ -20,47 +20,47 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
 1. Edit `hosts` (set domain from above; ssh key location)
 1. Copy SSL certs from caporaso-lab secrets:
 
-        cp ~/projects/qiime2/caporaso-lab-secrets/certs/qiime2.org/\*.qiime2.org.chained.crt files/ssl/fullchain.pem
-        cp ~/projects/qiime2/caporaso-lab-secrets/certs/qiime2.org/\*.qiime2.org.key files/ssl/privkey.pem
+       cp ~/projects/qiime2/caporaso-lab-secrets/certs/qiime2.org/\*.qiime2.org.chained.crt files/ssl/fullchain.pem
+       cp ~/projects/qiime2/caporaso-lab-secrets/certs/qiime2.org/\*.qiime2.org.key files/ssl/privkey.pem
 
 1. Create conda env (important, the tool definitions step below _must_ be run
    on a linux host):
 
-        # Change this step to meet your needs (a custom workshop distro, staging release, etc)
-        wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py38-linux-conda.yml
-        conda env create -n workshop-server --file qiime2-latest-py38-linux-conda.yml
-        conda install -n workshop-server -c conda-forge ansible rsync
-        rm qiime2-latest-py38-linux-conda.yml
-        conda activate workshop-server
-        pip install bioblend
+       # Change this step to meet your needs (a custom workshop distro, staging release, etc)
+       wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py38-linux-conda.yml
+       conda env create -n workshop-server --file qiime2-latest-py38-linux-conda.yml
+       conda install -n workshop-server -c conda-forge ansible rsync
+       rm qiime2-latest-py38-linux-conda.yml
+       conda activate workshop-server
+       pip install bioblend
 
 1. Install ansible roles:
 
-        ansible-galaxy install -p roles -r requirements.yml
+       ansible-galaxy install -p roles -r requirements.yml
 
 1. Build q2galaxy tool definitions:
 
-        q2galaxy template all files/tools/
-        q2galaxy template tool-conf /opt/qiime2_tools/tools files/tools/qiime2_tool_conf.xml
+       q2galaxy template all files/tools/
+       q2galaxy template tool-conf /opt/qiime2_tools/tools files/tools/qiime2_tool_conf.xml
 
 1. Run the playbook:
 
-        ansible-playbook galaxy.yml
+       ansible-playbook galaxy.yml
 
 1. You might need to log into the server and restart the galaxy instance:
 
-        sudo systemctl restart galaxy
-        sudo systemctl status galaxy
-        journalctl -fu galaxy
+       sudo systemctl restart galaxy
+       sudo systemctl status galaxy
+       journalctl -fu galaxy
 
 1. You'll need to manually create the first admin user account (in a local
    python session):
 
-        from bioblend.galaxy import GalaxyInstance
+       from bioblend.galaxy import GalaxyInstance
 
-        gi = GalaxyInstance('https://workshop-server.qiime2.org', key='GET THIS FROM THE VAULT')
-        gi.users.create_local_user('my first admin user', 'their email', 'initial password')
+       gi = GalaxyInstance('https://workshop-server.qiime2.org', key='GET THIS FROM THE VAULT')
+       gi.users.create_local_user('my first admin user', 'their email', 'initial password')
 
 1. Run the playbook one last time:
 
-        ansible-playbook galaxy.yml
+       ansible-playbook galaxy.yml
