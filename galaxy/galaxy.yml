@@ -24,6 +24,22 @@
       pip:
         name: ephemeris
         virtualenv: /opt/venv
+    - name: create gie dirs
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+        owner: "{{ galaxy_user.name }}"
+        group: "{{ galaxy_user.name }}"
+      loop:
+        - "{{ interactive_environments_plugins_path }}"
+        - "{{ interactive_environments_proxy_path }}"
+    - name: Include Interactive Environments package installation tasks
+      include_tasks:
+        file: roles/galaxyproject.interactive_environments/tasks/install_dependencies.yml
+        apply:
+          become: true
+          become_user: root
   roles:
     - galaxyproject.postgresql
     - role: natefoo.postgresql_objects
@@ -35,6 +51,9 @@
       become: true
       become_user: "{{ galaxy_user.name }}"
     - galaxyproject.nginx
+    - role: galaxyproject.interactive_environments
+      become: true
+      become_user: root
   post_tasks:
     # here we just install a single tool, galaxy should handle the rest for us
     - name: install tools via ephemeris
