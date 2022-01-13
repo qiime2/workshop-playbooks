@@ -38,6 +38,7 @@ galaxy_config_files:
     dest: "{{ galaxy_config.galaxy.job_config_file }}"
   - src: files/welcome.html
     dest: "{{ galaxy_server_dir }}/static/welcome.html"
+galaxy_manage_systemd: yes
 
 galaxy_config:
   galaxy:
@@ -85,7 +86,7 @@ galaxy_config:
   uwsgi:
     socket: 127.0.0.1:5000
     buffer-size: 16384
-    processes: 1
+    processes: 2
     threads: 4
     offload-threads: 2
     static-map:
@@ -106,10 +107,37 @@ galaxy_config:
     mule:
       - lib/galaxy/main.py
       - lib/galaxy/main.py
-    farm: job-handlers:1,2
-
-# systemd
-galaxy_manage_systemd: yes
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+    farm: job-handlers:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32
 
 # NGINX
 nginx_servers:

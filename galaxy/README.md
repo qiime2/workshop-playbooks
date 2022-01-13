@@ -18,6 +18,11 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
 1. `touch galaxy/.vault-password.txt` and add the vault secret (as Evan or Matt
    for help with this).
 1. Edit `hosts` (set domain from above; ssh key location)
+1. Copy SSL certs from caporaso-lab secrets:
+
+    cp ~/projects/qiime2/caporaso-lab-secrets/certs/qiime2.org/\*.qiime2.org.chained.crt files/ssl/fullchain.pem
+    cp ~/projects/qiime2/caporaso-lab-secrets/certs/qiime2.org/\*.qiime2.org.key files/ssl/privkey.pem
+
 1. Create conda env (important, the tool definitions step below _must_ be run
    on a linux host):
 
@@ -27,6 +32,7 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
     conda install -n workshop-server -c conda-forge ansible rsync
     rm qiime2-latest-py38-linux-conda.yml
     conda activate workshop-server
+    pip install bioblend
 
 1. Install ansible roles:
 
@@ -40,3 +46,17 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
 1. Run the playbook:
 
     ansible-playbook galaxy.yml
+
+1. You might need to log into the server and restart the galaxy instance:
+
+    sudo systemctl restart galaxy
+    sudo systemctl status galaxy
+    journalctl -fu galaxy
+
+1. You'll need to manually create the first admin user account (in a local
+   python session):
+
+    from bioblend.galaxy import GalaxyInstance
+
+    gi = GalaxyInstance('https://workshop-server.qiime2.org', key='GET THIS FROM THE VAULT')
+    gi.users.create_local_user('my first admin user', 'their email', 'initial password')
