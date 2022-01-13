@@ -41,15 +41,6 @@ galaxy_config_files:
 galaxy_manage_systemd: yes
 
 galaxy_config:
-  "app:main":
-    interactive_environment_plugins_directory: "{{ interactive_environments_plugins_path }}"
-    dynamic_proxy_manage: "False"
-    dynamic_proxy_session_map: "{{ galaxy_root }}/var/gie_proxy_session_map.sqlite"
-    dynamic_proxy_bind_port: 8880
-    dynamic_proxy_bind_ip: 0.0.0.0
-    dynamic_proxy_external_proxy: "True"
-    dynamic_proxy_prefix: gie_proxy
-    galaxy_infrastructure_url: "{{ inventory_hostname }}"
   galaxy:
     brand: "QIIME 2 Server"
     admin_users: matthew.dillon@nau.edu,evan.bolyen@nau.edu,greg.caporaso@nau.edu
@@ -160,27 +151,3 @@ sslkeys:
   privkey.pem: "{{ vault_ssl_private_key }}"
 nginx_conf_ssl_certificate: fullchain.pem
 nginx_conf_ssl_certificate_key: privkey.pem
-
-# Galaxy interactive envs
-interactive_environments_install_method: copy
-interactive_environments_plugins_path: "{{ galaxy_root }}/interactive_environments/plugins"
-interactive_environments_proxy_path: "{{ galaxy_root }}/interactive_environments/proxy"
-interactive_environments_enabled:
-  - jupyter
-interactive_environments_config_files:
-  - ie_name: jupyter
-    file: jupyter.ini
-    contents:
-      docker:
-        command: "docker -H tcp://docker.{{ inventory_hostname }}:2376 --tlsverify {docker_args}"
-        galaxy_url: "{{ inventory_hostname }}"
-        docker_hostname: "docker.{{ inventory_hostname }}"
-  - ie_name: jupyter
-    file: allowed_images.yml
-    contents:
-      - image: "bgruening/docker-jupyter-notebook"
-        description: >
-          The Jupyter notebook is the next iteration of IPython, allowing
-          analysis in many different languages. This image features the Python,
-          R, Julia, Haskell, Bash kernels and many scientific analysis stacks for
-          each.
