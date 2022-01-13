@@ -9,10 +9,10 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
 1. Allocate an EC2 instance in the region of your choice, with the latest
    Ubuntu distro (note, you'll probably need to set up a VPC for this;
    alternatively you could allocate an AWS Lightsail instance):
-  - `m4.16xlarge` works for mid-size workshops (TODO: verify this)
-  - Make sure to provision an EBS volume (1000 GB works for mid-size workshops)
-  - Provision with a public-facing IP address
-  - Create a new SSH keypair, if necessary and associate it with this instance.
+    - `m4.16xlarge` works for mid-size workshops (TODO: verify this)
+    - Make sure to provision an EBS volume (1000 GB works for mid-size workshops)
+    - Provision with a public-facing IP address
+    - Create a new SSH keypair, if necessary and associate it with this instance.
 1. Set up DNS (create/update an `A` record with the new IP, at the domain you
    want (like workshop-server.qiime2.org)
 1. `touch galaxy/.vault-password.txt` and add the vault secret (as Evan or Matt
