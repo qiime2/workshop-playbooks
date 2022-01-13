@@ -15,10 +15,10 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
     - Create a new SSH keypair, if necessary and associate it with this instance.
 1. Set up DNS (create/update an `A` record with the new IP, at the domain you
    want (like workshop-server.qiime2.org)
-1. `touch galaxy/.vault-password.txt` and add the vault secret (as Evan or Matt
-   for help with this).
+1. `touch galaxy/.vault-password.txt` and add the vault secret (ask Evan or
+   Matt for help with this).
 1. Edit `hosts` (set domain from above; ssh key location)
-1. Copy SSL certs from caporaso-lab secrets:
+1. Copy SSL certs from caporaso-lab-secrets:
 
        cp ~/projects/qiime2/caporaso-lab-secrets/certs/qiime2.org/\*.qiime2.org.chained.crt files/ssl/fullchain.pem
        cp ~/projects/qiime2/caporaso-lab-secrets/certs/qiime2.org/\*.qiime2.org.key files/ssl/privkey.pem
