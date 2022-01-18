@@ -9,6 +9,9 @@ postgresql_objects_users:
 postgresql_objects_databases:
   - name: galaxy
     owner: galaxy
+postgresql_conf:
+  - max_connections: 250
+  - shared_buffers: 8GB
 
 # PostgreSQL Backups
 postgresql_backup_dir: /data/backups
@@ -83,6 +86,9 @@ galaxy_config:
     smtp_username: "{{ vault_smtp_username }}"
     smtp_password: "{{ vault_smtp_password }}"
     smtp_ssl: "{{ vault_smtp_ssl }}"
+    # database
+    database_engine_option_pool_size: 20
+    database_engine_option_max_overflow: 40
   uwsgi:
     socket: 127.0.0.1:5000
     buffer-size: 16384
@@ -129,15 +135,7 @@ galaxy_config:
       - lib/galaxy/main.py
       - lib/galaxy/main.py
       - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-    farm: job-handlers:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32
+    farm: job-handlers:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 
 # NGINX
 nginx_servers:
