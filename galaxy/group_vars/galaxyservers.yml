@@ -89,12 +89,14 @@ galaxy_config:
     # database
     database_engine_option_pool_size: 20
     database_engine_option_max_overflow: 40
+    log_level: WARNING
   uwsgi:
     socket: 127.0.0.1:5000
+    stats: 127.0.0.1:9191
     buffer-size: 16384
-    processes: 2
+    processes: 1
     threads: 4
-    offload-threads: 2
+    offload-threads: 1
     static-map:
       - /static={{ galaxy_server_dir }}/static
       - /favicon.ico={{ galaxy_server_dir }}/static/favicon.ico
@@ -115,27 +117,11 @@ galaxy_config:
       - lib/galaxy/main.py
       - lib/galaxy/main.py
       - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-      - lib/galaxy/main.py
-    farm: job-handlers:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
+    farm: job-handlers:1,2,3,4
+
+galaxy_systemd_memory_limit:
+  # This is for the entire group of uWSGI master, web worker, and mule processes
+  mule: 200
 
 # NGINX
 nginx_servers:
