@@ -1,4 +1,16 @@
 ---
+# instance-specific config
+# - galaxy_config.galaxy.brand
+# - galaxy_config.galaxy.conda_ensure_channels
+# - galaxy_config.uwsgi.mule
+# - galaxy_config.uwsgi.farm
+# - galaxy_systemd_memory_limit.mule
+# - job_conf.xml.j2: plugins workers count
+#
+# NOTES on known configs:
+# m4.16xlarge	64	256	$3.20
+# this works with 4 mules, systemd memory limit of 200GB, 32 job_conf workers
+
 # Python 3 support
 pip_virtualenv_command: /usr/bin/python3 -m virtualenv
 pip_package: python3-pip
@@ -117,11 +129,12 @@ galaxy_config:
       - lib/galaxy/main.py
       - lib/galaxy/main.py
       - lib/galaxy/main.py
-    farm: job-handlers:1,2,3,4
+      - lib/galaxy/main.py
+    farm: job-handlers:1,2,3,4,5
 
 galaxy_systemd_memory_limit:
   # This is for the entire group of uWSGI master, web worker, and mule processes
-  mule: 200
+  mule: 325
 
 # NGINX
 nginx_servers:
