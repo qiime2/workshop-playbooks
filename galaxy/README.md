@@ -47,20 +47,19 @@ https://training.galaxyproject.org/training-material/topics/admin/tutorials/ansi
 
        ansible-playbook galaxy.yml
 
-1. You might need to log into the server and restart the galaxy instance:
+1. Log into the server and restart the galaxy instance:
 
        sudo systemctl restart galaxy
        sudo systemctl status galaxy
        journalctl -fu galaxy
 
-1. You'll need to manually create the first admin user account (in a local
-   python session):
+1. Manually create the first admin user account (in a local python session):
 
        from bioblend.galaxy import GalaxyInstance
 
        gi = GalaxyInstance('https://workshop-server.qiime2.org', key='GET THIS FROM THE VAULT')
        gi.users.create_local_user('my first admin user', 'their email', 'initial password')
 
-1. Run the playbook one last time:
+1. Run the playbook one last time for good luck:
 
        ansible-playbook galaxy.yml
