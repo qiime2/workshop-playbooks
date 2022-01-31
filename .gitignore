@@ -4,3 +4,4 @@
 *.csv
 tmp/*
 !tmp/.gitkeep
+.vault-password.txt

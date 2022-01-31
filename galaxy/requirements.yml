@@ -1,0 +1,7 @@
+- src: galaxyproject.galaxy
+- src: galaxyproject.nginx
+- src: galaxyproject.postgresql
+- src: galaxyproject.interactive_environments
+- src: natefoo.postgresql_objects
+- src: geerlingguy.pip
+- src: uchida.miniconda
