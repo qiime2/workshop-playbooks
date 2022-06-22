@@ -58,7 +58,7 @@ galaxy_manage_systemd: yes
 galaxy_config:
   galaxy:
     brand: "QIIME 2 Server"
-    admin_users: matthew.dillon@nau.edu,evan.bolyen@nau.edu,greg.caporaso@nau.edu
+    admin_users: evan.bolyen@nau.edu,greg.caporaso@nau.edu
     database_connection: "postgresql:///galaxy?host=/var/run/postgresql"
     file_path: /data
     check_migrate_tools: false
