@@ -14,9 +14,10 @@
       register: facts
 
     - name: destroy instances
-      ec2:
+      ec2_instance:
         region: "{{ ec2_region }}"
-        instance_id: "{{ item.instance_id }}"
+        instance_ids:
+          - "{{ item.instance_id }}"
         state: absent
         wait: true
       with_items: "{{ facts.instances }}"

@@ -34,7 +34,7 @@
   file:
     path: /mnt/home
     state: directory
-    mode: 0777
+    mode: '0777'
     owner: ubuntu
     group: ubuntu
 
@@ -80,6 +80,7 @@
   file:
     path: "{{ item.path }}"
     state: "{{ item.state }}"
+    mode: '0755'
   with_items:
     - { path: '/etc/skel/workshop', state: 'directory' }
 
@@ -97,6 +98,13 @@
     ssh_key_file: .ssh/id_rsa
   with_items: "{{ users }}"
   register: accts
+
+- name: update permissions
+  file:
+    path: "/mnt/home/{{ item.name }}"
+    state: directory
+    mode: '0755'
+  with_items: "{{ users }}"
 
 - name: add authorized key
   authorized_key:

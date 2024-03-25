@@ -1,21 +1,21 @@
 ---
 
-ec2_region: us-west-2
-image_id: ami-45224425
+ec2_region: eu-west-3
+image_id: ami-00c71bd4d220aa22a
 # This can be an int, or a filepath to a csv (with 2 cols and a header) of user/pass
-accts_per_host: 8
+accts_per_host: 7
 
 # TESTING CONFIG
-jump_host_type: t3.small
-compute_host_type: t3.nano
-compute_host_count: 1
-volume_size: "8"
+# jump_host_type: t3.small
+# compute_host_type: t3.nano
+# compute_host_count: 2
+# volume_size: "100"
 
 # PRODUCTION CONFIG
-# jump_host_type: m5.8xlarge
-# compute_host_type: m5.2xlarge
-# compute_host_count: 12
-# volume_size: "50"
+jump_host_type: m6i.xlarge
+compute_host_type: m6i.2xlarge
+compute_host_count: 3
+volume_size: "150"
 
 workshop_name: "{{ lookup('env', 'QIIME_WORKSHOP_NAME') }}"
 eip: "{{ lookup('env', 'QIIME_EIP') }}"
@@ -27,7 +27,7 @@ group_name: ssh-workshops
 vpc_cidr_block: 172.23.0.0/16
 workshop_key_fn: workshopkey-private.pem
 
-qiime2_release: "2021.11"
+qiime2_release: "2024.5-dev"
 miniconda_path: /mnt/home/miniconda3
 
 security_groups:
@@ -66,19 +66,15 @@ security_groups:
 ec2_jump_host_instances:
   - instance_type: "{{ jump_host_type }}"
     image: "{{ image_id }}"
-    group: ["{{ group_name }}"]
+    group: "{{ group_name }}"
     instance_tags:
       Name: "{{ jump_host_name }}"
     exact_count: 1
-    count_tag:
-      Name: "{{ jump_host_name }}"
 
 ec2_compute_instances:
   - instance_type: "{{ compute_host_type }}"
     image: "{{ image_id }}"
-    group: ["{{ group_name }}"]
+    group: "{{ group_name }}"
     instance_tags:
       Name: "{{ compute_host_name }}"
     exact_count: "{{ compute_host_count }}"
-    count_tag:
-      Name: "{{ compute_host_name }}"

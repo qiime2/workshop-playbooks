@@ -44,7 +44,7 @@
 - name: download env file
   become: true
   get_url:
-    url: https://data.qiime2.org/distro/core/qiime2-{{ qiime2_release }}-py38-linux-conda.yml
+    url: https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-shotgun-ubuntu-latest-conda.yml
     dest: /tmp/env.yml
   when: not env.stat.exists
 
